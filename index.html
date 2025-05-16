@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Jhon Steven Valencia Guzmán - Hoja de Vida</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
   <style>
     * {
       box-sizing: border-box;
@@ -78,13 +79,30 @@
     a:hover {
       text-decoration: underline;
     }
-    .idiomas, .habilidades {
+    .habilidades-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      list-style: none;
+      padding: 0;
+    }
+    .habilidades-grid li {
+      display: flex;
+      align-items: center;
+      font-size: 1rem;
+      background: #0f172a;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    .habilidades-grid i {
+      font-size: 1.5rem;
+      margin-right: 0.5rem;
+    }
+    .idiomas {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 0.5rem 2rem;
-    }
-    .habilidades li::before {
-      content: "🛠️ ";
     }
     .idiomas li::before {
       content: "🌐 ";
@@ -93,18 +111,18 @@
 </head>
 <body>
   <header>
-    <img src="1726279881596.jpeg" alt="Foto de Jhon Steven Valencia Guzmán">
+    <img src="1726279881596.jpeg" alt="Foto de Jhon Steven Valencia Guzmán" />
     <h1>Jhon Steven Valencia Guzmán</h1>
     <p>Desarrollador Full Stack | Ingeniero de Sistemas</p>
   </header>
   <main>
     <section>
       <h2>Perfil Profesional</h2>
-      <p>Desarrollador Full Stack con casi 3 años de experiencia en el desarrollo de aplicaciones web dinámicas y escalables. Especializado en HTML5, PHP y gestión de bases de datos, combino habilidades técnicas sólidas con una mentalidad orientada a la resolución de problemas.</p>
-      <p>Actualmente curso la Especialización en Ingeniería de Software en la Universidad Internacional de La Rioja (UNIR), ampliando mis conocimientos para abordar desafíos tecnológicos con soluciones eficientes e innovadoras.</p>
-      <p>Apasionado por la optimización del rendimiento y la calidad del código, cuento con experiencia comprobada en Vue.js y Laravel, tecnologías que utilizo para diseñar interfaces intuitivas y arquitecturas basadas en microservicios.</p>
-      <p>Disfruto trabajar en equipos multidisciplinarios, aportando compromiso, proactividad y una fuerte orientación a la excelencia técnica. Mi objetivo es contribuir al desarrollo de productos digitales que generen valor real y mejoren la experiencia del usuario.</p>
+      <p>💻 Desarrollador Full Stack con casi tres años de experiencia en el desarrollo de aplicaciones web robustas, combinando habilidades en HTML5, PHP y gestión de bases de datos para crear soluciones funcionales y escalables. Actualmente, curso la Especialización en Ingeniería de Software en la Universidad Internacional de La Rioja (UNIR), con el objetivo de fortalecer mi perfil técnico y enfrentar desafíos complejos con enfoques innovadores.</p>
+      <p>🚀 Apasionado por la optimización del rendimiento y la calidad del código, he demostrado competencias avanzadas en Vue.js, React.js y Laravel, tecnologías que utilizo para construir interfaces dinámicas y arquitecturas de microservicios eficientes.</p>
+      <p>🤝 Trabajo de forma colaborativa con equipos multifuncionales, aportando no solo habilidades técnicas, sino también un fuerte compromiso con la excelencia, la mejora continua y la entrega de productos de alto valor para los usuarios y el negocio.</p>
     </section>
+
     <section>
       <h2>Información de Contacto</h2>
       <div class="contacto">
@@ -118,10 +136,11 @@
           <strong>Ubicación:</strong> Ibagué, Colombia
         </div>
         <div class="item">
-          <strong>GitHub:</strong> <a href="https://github.com/jhondestroy16" target="_blank">@jhondestroy16</a>
+          <strong>GitHub:</strong> <a href="https://github.com/jhondestroy16" target="_blank">Jhondestroy16</a>
         </div>
       </div>
     </section>
+
     <section>
       <h2>Experiencia Profesional</h2>
       <ul>
@@ -129,6 +148,7 @@
         <li><strong>Concre Tolima S.A (Febrero 2022 – Noviembre 2022):</strong> Desarrollador de software en Ibagué.</li>
       </ul>
     </section>
+
     <section>
       <h2>Educación</h2>
       <ul>
@@ -137,19 +157,21 @@
         <li><strong>Tecnología en Gestión de Bases de Datos</strong> (2017 - 2019) - Universidad del Tolima</li>
       </ul>
     </section>
+
     <section>
       <h2>Habilidades Técnicas</h2>
-      <ul class="habilidades">
-        <li>Laravel - Intermedio</li>
-        <li>PostgreSQL - Intermedio</li>
-        <li>PHP - Intermedio</li>
-        <li>Java - Básico</li>
-        <li>Vue.js - Intermedio</li>
-        <li>MySQL - Intermedio</li>
-        <li>React.js - Básico</li>
-        <li>Spring Boot - Básico</li>
+      <ul class="habilidades-grid">
+        <li><i class="devicon-laravel-plain colored"></i> Laravel - Intermedio</li>
+        <li><i class="devicon-postgresql-plain colored"></i> PostgreSQL - Intermedio</li>
+        <li><i class="devicon-php-plain colored"></i> PHP - Intermedio</li>
+        <li><i class="devicon-java-plain colored"></i> Java - Básico</li>
+        <li><i class="devicon-vuejs-plain colored"></i> Vue.js - Intermedio</li>
+        <li><i class="devicon-mysql-plain colored"></i> MySQL - Intermedio</li>
+        <li><i class="devicon-react-original colored"></i> React.js - Básico</li>
+        <li><i class="devicon-spring-plain colored"></i> Spring Boot - Básico</li>
       </ul>
     </section>
+
     <section>
       <h2>Idiomas</h2>
       <ul class="idiomas">
