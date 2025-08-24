@@ -7,21 +7,25 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    *{box-sizing:border-box;}
     body {
       font-family: 'Roboto', sans-serif;
       margin: 0;
       background: #0f172a;
       color: #f1f5f9;
       line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
+    }
+    body.light {
+      background: #f1f5f9;
+      color: #0f172a;
     }
     header {
       background: #1e293b;
       color: white;
       padding: 3rem 1rem 2rem;
       text-align: center;
+      position: relative;
     }
     header img {
       border-radius: 50%;
@@ -30,6 +34,10 @@
       object-fit: cover;
       border: 4px solid #38bdf8;
       margin-bottom: 1rem;
+      transition: transform 0.3s;
+    }
+    header img:hover {
+      transform: scale(1.1);
     }
     header h1 {
       margin: 0;
@@ -39,8 +47,24 @@
       color: #94a3b8;
       font-size: 1rem;
     }
+    #typewriter {
+      color: #38bdf8;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+    #toggleMode {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: #38bdf8;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+    }
     main {
-      max-width: 900px;
+      max-width: 1000px;
       margin: 2rem auto;
       padding: 1rem;
       background: #1e293b;
@@ -49,6 +73,13 @@
     }
     section {
       margin-bottom: 2rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
     h2 {
       color: #38bdf8;
@@ -57,28 +88,30 @@
       border-bottom: 1px solid #334155;
       padding-bottom: 0.3rem;
     }
-    ul {
+    ul { list-style: none; padding-left: 0; }
+    ul li { padding: 0.3rem 0; }
+    a { color: #38bdf8; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    /* Contacto en lista vertical */
+    .contacto-lista {
       list-style: none;
-      padding-left: 0;
+      padding: 0;
+      margin: 0;
     }
-    ul li {
-      padding: 0.3rem 0;
-    }
-    .contacto, .redes {
+    .contacto-lista li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid #334155;
       display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
+      align-items: center;
+      gap: 0.5rem;
     }
-    .item {
-      flex: 1 1 220px;
+    .contacto-lista li:last-child {
+      border-bottom: none;
     }
-    a {
-      color: #38bdf8;
-      text-decoration: none;
+    .contacto-lista span {
+      font-size: 1.2rem;
     }
-    a:hover {
-      text-decoration: underline;
-    }
+    /* Habilidades */
     .habilidades-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -87,17 +120,25 @@
       padding: 0;
     }
     .habilidades-grid li {
-      display: flex;
-      align-items: center;
-      font-size: 1rem;
       background: #0f172a;
       padding: 0.5rem 1rem;
       border-radius: 8px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      position: relative;
     }
-    .habilidades-grid i {
-      font-size: 1.5rem;
-      margin-right: 0.5rem;
+    .habilidades-grid i { font-size: 1.5rem; margin-right: 0.5rem; }
+    .progress-bar {
+      background: #334155;
+      height: 8px;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 0.5rem;
+    }
+    .progress {
+      height: 100%;
+      width: 0;
+      background: #38bdf8;
+      transition: width 2s;
     }
     .idiomas {
       display: grid;
@@ -107,13 +148,24 @@
     .idiomas li::before {
       content: "🌐 ";
     }
+    /* Hover en experiencia y educación */
+    .timeline li {
+      transition: transform 0.2s, background 0.2s;
+      padding: 0.5rem;
+      border-radius: 8px;
+    }
+    .timeline li:hover {
+      transform: scale(1.02);
+      background: rgba(56,189,248,0.1);
+    }
   </style>
 </head>
 <body>
   <header>
+    <button id="toggleMode">☀️/🌙</button>
     <img src="1726279881596.jpeg" alt="Foto de Jhon Steven Valencia Guzmán" />
     <h1>Jhon Steven Valencia Guzmán</h1>
-    <p>Desarrollador Full Stack | Ingeniero de Sistemas</p>
+    <p id="typewriter"></p>
   </header>
   <main>
     <section>
@@ -126,28 +178,18 @@
 
     <section>
       <h2>Información de Contacto</h2>
-      <div class="contacto">
-        <div class="item">
-          <strong>Teléfono:</strong>+57 317 533 1444
-        </div>
-        <div class="item">
-          <strong>Email:</strong>jhonstevenvalenciaguzman@gmail.com
-        </div>
-        <div class="item">
-          <strong>Ubicación:</strong>Ibagué, Colombia
-        </div>
-        <div class="item">
-          <strong>GitHub:</strong> <a href="https://github.com/jhondestroy16" target="_blank">Jhondestroy16</a>
-        </div>
-        <div class="item">
-          <strong>Linkedin:</strong> <a href="https://www.linkedin.com/in/jhon-steven-valencia-guzman-658383201/" target="_blank">Jhon Valencia</a>
-        </div>
-      </div>
+      <ul class="contacto-lista">
+        <li><span>📱</span><strong>Teléfono:</strong> +57 317 533 1444</li>
+        <li><span>📧</span><strong>Email:</strong> jhonstevenvalenciaguzman@gmail.com</li>
+        <li><span>📍</span><strong>Ubicación:</strong> Ibagué, Colombia</li>
+        <li><span>💻</span><strong>GitHub:</strong> <a href="https://github.com/jhondestroy16" target="_blank">Jhondestroy16</a></li>
+        <li><span>🔗</span><strong>Linkedin:</strong> <a href="https://www.linkedin.com/in/jhon-steven-valencia-guzman-658383201/" target="_blank">Jhon Valencia</a></li>
+      </ul>
     </section>
 
     <section>
       <h2>Experiencia Profesional</h2>
-      <ul>
+      <ul class="timeline">
         <li><strong>TurriSystem S.A.S (Marzo 2023 – Actualidad):</strong> Desarrollador de software en Ibagué.</li>
         <li><strong>Concre Tolima S.A (Febrero 2022 – Noviembre 2022):</strong> Desarrollador de software en Ibagué.</li>
       </ul>
@@ -155,7 +197,7 @@
 
     <section>
       <h2>Educación</h2>
-      <ul>
+      <ul class="timeline">
         <li><strong>Especialización en Ingeniería de Software</strong> (2024 - Actualidad) - UNIR</li>
         <li><strong>Ingeniería de Sistemas</strong> (2020 - 2022) - Universidad del Tolima</li>
         <li><strong>Tecnología en Gestión de Bases de Datos</strong> (2017 - 2019) - Universidad del Tolima</li>
@@ -165,14 +207,30 @@
     <section>
       <h2>Habilidades Técnicas</h2>
       <ul class="habilidades-grid">
-        <li><i class="devicon-laravel-plain colored"></i> Laravel - Intermedio</li>
-        <li><i class="devicon-postgresql-plain colored"></i> PostgreSQL - Intermedio</li>
-        <li><i class="devicon-php-plain colored"></i> PHP - Intermedio</li>
-        <li><i class="devicon-java-plain colored"></i> Java - Básico</li>
-        <li><i class="devicon-vuejs-plain colored"></i> Vue.js - Intermedio</li>
-        <li><i class="devicon-mysql-plain colored"></i> MySQL - Intermedio</li>
-        <li><i class="devicon-react-original colored"></i> React.js - Básico</li>
-        <li><i class="devicon-spring-plain colored"></i> Spring Boot - Básico</li>
+        <li><i class="devicon-laravel-plain colored"></i> Laravel
+          <div class="progress-bar"><div class="progress" data-skill="80"></div></div>
+        </li>
+        <li><i class="devicon-postgresql-plain colored"></i> PostgreSQL
+          <div class="progress-bar"><div class="progress" data-skill="70"></div></div>
+        </li>
+        <li><i class="devicon-php-plain colored"></i> PHP
+          <div class="progress-bar"><div class="progress" data-skill="75"></div></div>
+        </li>
+        <li><i class="devicon-java-plain colored"></i> Java
+          <div class="progress-bar"><div class="progress" data-skill="40"></div></div>
+        </li>
+        <li><i class="devicon-vuejs-plain colored"></i> Vue.js
+          <div class="progress-bar"><div class="progress" data-skill="70"></div></div>
+        </li>
+        <li><i class="devicon-mysql-plain colored"></i> MySQL
+          <div class="progress-bar"><div class="progress" data-skill="70"></div></div>
+        </li>
+        <li><i class="devicon-react-original colored"></i> React.js
+          <div class="progress-bar"><div class="progress" data-skill="50"></div></div>
+        </li>
+        <li><i class="devicon-spring-plain colored"></i> Spring Boot
+          <div class="progress-bar"><div class="progress" data-skill="40"></div></div>
+        </li>
       </ul>
     </section>
 
@@ -183,5 +241,38 @@
       </ul>
     </section>
   </main>
+
+  <script>
+    // Typewriter effect
+    const text = "Desarrollador Full Stack | Ingeniero de Sistemas";
+    let i = 0;
+    function typeWriter() {
+      if (i < text.length) {
+        document.getElementById("typewriter").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 80);
+      }
+    }
+    typeWriter();
+
+    // Scroll reveal + progress bars
+    const sections = document.querySelectorAll("section");
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add("visible");
+          entry.target.querySelectorAll(".progress").forEach(bar=>{
+            bar.style.width = bar.getAttribute("data-skill")+"%";
+          });
+        }
+      });
+    }, {threshold: 0.2});
+    sections.forEach(sec => observer.observe(sec));
+
+    // Dark mode toggle
+    document.getElementById("toggleMode").addEventListener("click", ()=>{
+      document.body.classList.toggle("light");
+    });
+  </script>
 </body>
 </html>
