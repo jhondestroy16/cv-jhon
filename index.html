@@ -1277,7 +1277,7 @@
             <span class="skill-percent">70%</span>
           </div>
           <div class="skill-card">
-            <i class="devicon-amazonwebservices-plain-wordmark colored"></i>
+            <i class="fa-brands fa-aws" style="color:#FF9900;"></i>
             <span class="skill-name">AWS</span>
             <div class="skill-bar">
               <div class="skill-fill" data-skill="30"></div>
@@ -1299,7 +1299,7 @@
       <a href="https://wa.me/573175331444" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
       <a href="mailto:jhonstevenvalenciaguzman@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
     </div>
-    <p>© 2025 Jhon Steven Valencia Guzmán · Todos los derechos reservados</p>
+    <p>© <span id="currentYear"></span> Jhon Steven Valencia Guzmán · Todos los derechos reservados</p>
   </footer>
 
   <!-- ===== SCRIPTS ===== -->
@@ -1381,6 +1381,9 @@
       document.body.classList.toggle("light");
       toggleBtn.textContent = document.body.classList.contains("light") ? "☀️" : "🌙";
     });
+
+    // ===== CURRENT YEAR =====
+    document.getElementById("currentYear").textContent = new Date().getFullYear();
 
     // ===== PARTICLES =====
     const canvas = document.getElementById("particles");
