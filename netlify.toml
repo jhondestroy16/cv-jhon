@@ -1,0 +1,12 @@
+[build]
+  # Esta es la carpeta que Vite genera al hacer el build
+  publish = "dist"
+  
+  # El comando que Netlify debe ejecutar para construir tu sitio
+  command = "npm run build"
+
+[[redirects]]
+  # Esto evita errores 404 al recargar la página en una App de React
+  from = "/*"
+  to = "/index.html"
+  status = 200
