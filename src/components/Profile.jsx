@@ -5,15 +5,20 @@ import Reveal from "./Reveal";
 const Profile = () => {
   // Words/phrases to highlight in the profile text
   const highlights = [
+    "Desarrollador Full Stack",
+    "Especialista en Sistemas Críticos",
     "más de 3 años de experiencia",
-    "sector gubernamental y tributario",
+    "alta disponibilidad",
     "Laravel",
     "Vue.js",
-    "Especialización en Ingeniería de Software",
-    "Java y Spring Boot",
-    "liderazgo técnico",
+    "PHP",
+    "PostgreSQL",
+    "MySQL",
+    "Ingeniería de Software",
+    "Java",
+    "Spring Boot",
     "arquitectura de software",
-    "sistemas web críticos",
+    "liderazgo técnico"
   ];
 
   const highlightText = (text) => {
