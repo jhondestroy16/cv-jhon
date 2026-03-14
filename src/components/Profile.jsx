@@ -3,6 +3,30 @@ import { cvData } from "../data/cvData";
 import Reveal from "./Reveal";
 
 const Profile = () => {
+  // Words/phrases to highlight in the profile text
+  const highlights = [
+    "más de 3 años de experiencia",
+    "sector gubernamental y tributario",
+    "Laravel",
+    "Vue.js",
+    "Especialización en Ingeniería de Software",
+    "Java y Spring Boot",
+    "liderazgo técnico",
+    "arquitectura de software",
+    "sistemas web críticos",
+  ];
+
+  const highlightText = (text) => {
+    let result = text;
+    highlights.forEach((phrase) => {
+      result = result.replace(
+        phrase,
+        `<span class="profile-highlight">${phrase}</span>`
+      );
+    });
+    return result;
+  };
+
   return (
     <Reveal className="glass-card" id="perfil">
       <div className="section-title">
@@ -12,39 +36,12 @@ const Profile = () => {
         Perfil Profesional
       </div>
       <div className="profile-text">
-        {cvData.profile.map((paragraph, index) => {
-          // Logic to highlight "Especialista en Ingeniería de Software", "tres años de experiencia", etc.
-          // For simplicity, I'll just render paragraphs, but I could add specific logic if needed.
-          // Let's try to match the original highlight style.
-          const processedText = paragraph
-            .replace(
-              "Especialista en Ingeniería de Software",
-              '<span class="profile-highlight">Especialista en Ingeniería de Software</span>'
-            )
-            .replace(
-              "tres años de experiencia",
-              '<span class="profile-highlight">tres años de experiencia</span>'
-            )
-            .replace(
-              "Laravel",
-              '<span class="profile-highlight">Laravel</span>'
-            )
-            .replace(
-              "Java y Spring Boot",
-              '<span class="profile-highlight">Java y Spring Boot</span>'
-            )
-            .replace(
-              "liderazgo técnico",
-              '<span class="profile-highlight">liderazgo técnico</span>'
-            );
-
-          return (
-            <p
-              key={index}
-              dangerouslySetInnerHTML={{ __html: processedText }}
-            />
-          );
-        })}
+        {cvData.profile.map((paragraph, index) => (
+          <p
+            key={index}
+            dangerouslySetInnerHTML={{ __html: highlightText(paragraph) }}
+          />
+        ))}
       </div>
     </Reveal>
   );

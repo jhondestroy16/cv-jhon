@@ -3,6 +3,24 @@ import { cvData } from "../data/cvData";
 import Reveal from "./Reveal";
 import { motion } from "framer-motion";
 
+const categoryColors = {
+  Avanzado: {
+    bg: "rgba(34, 197, 94, 0.12)",
+    border: "rgba(34, 197, 94, 0.25)",
+    text: "#4ade80",
+  },
+  Intermedio: {
+    bg: "rgba(99, 102, 241, 0.12)",
+    border: "rgba(99, 102, 241, 0.25)",
+    text: "#818cf8",
+  },
+  Básico: {
+    bg: "rgba(148, 163, 184, 0.1)",
+    border: "rgba(148, 163, 184, 0.2)",
+    text: "#94a3b8",
+  },
+};
+
 const Skills = () => {
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -43,20 +61,22 @@ const SkillCard = ({ skill }) => {
     visible: { opacity: 1, scale: 1 }
   };
 
+  const colors = categoryColors[skill.category] || categoryColors["Básico"];
+
   return (
     <motion.div className="skill-card" variants={itemVariants}>
       <i className={skill.icon} style={skill.customStyle || {}}></i>
       <span className="skill-name">{skill.name}</span>
-      <div className="skill-bar">
-        <motion.div
-          className="skill-fill"
-          initial={{ width: 0 }}
-          whileInView={{ width: `${skill.level}%` }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-        ></motion.div>
-      </div>
-      <span className="skill-percent">{skill.level}%</span>
+      <span
+        className="skill-category"
+        style={{
+          background: colors.bg,
+          border: `1px solid ${colors.border}`,
+          color: colors.text,
+        }}
+      >
+        {skill.category}
+      </span>
     </motion.div>
   );
 };

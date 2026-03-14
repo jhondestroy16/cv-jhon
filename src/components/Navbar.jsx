@@ -11,7 +11,22 @@ const Navbar = ({ isLightMode, toggleTheme }) => {
       setIsScrolled(window.scrollY > 50);
 
       // Active section logic
-      const sectionIds = ["hero", "perfil", "experiencia", "educacion", "habilidades", "contacto"];
+      const sectionIds = ["hero", "perfil", "experiencia", "educacion", "habilidades", "proyectos", "contacto"];
+
+      // Check if user is near the bottom of the page
+      const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 50;
+      const contactoEl = document.getElementById("contacto");
+
+      if (isAtBottom && contactoEl) {
+        const contactoRect = contactoEl.getBoundingClientRect();
+        // Only highlight "contacto" if the footer is clearly visible (top half of viewport)
+        if (contactoRect.top < window.innerHeight * 0.6) {
+          setActiveSection("contacto");
+          return;
+        }
+      }
+
+      // Normal detection: find the last section whose top has passed the threshold
       let current = "";
       for (const id of sectionIds) {
         const section = document.getElementById(id);
@@ -23,6 +38,7 @@ const Navbar = ({ isLightMode, toggleTheme }) => {
     };
 
     window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Run once on mount to set initial active state
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -31,6 +47,7 @@ const Navbar = ({ isLightMode, toggleTheme }) => {
     { name: "Experiencia", href: "#experiencia", icon: "briefcase" },
     { name: "Educación", href: "#educacion", icon: "graduation-cap" },
     { name: "Habilidades", href: "#habilidades", icon: "code" },
+    { name: "Proyectos", href: "#proyectos", icon: "rocket" },
     { name: "Contacto", href: "#contacto", icon: "address-card" },
   ];
 

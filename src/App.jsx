@@ -6,6 +6,7 @@ import Profile from "./components/Profile";
 import Experience from "./components/Experience";
 import Education from "./components/Education";
 import Skills from "./components/Skills";
+import Projects from "./components/Projects";
 import Footer from "./components/Footer";
 import { Toaster } from "sonner";
 
@@ -39,6 +40,8 @@ function App() {
           <Education />
           <div style={{ height: "1.5rem" }}></div>
           <Skills />
+          <div style={{ height: "1.5rem" }}></div>
+          <Projects />
         </div>
       </div>
       <Footer />
